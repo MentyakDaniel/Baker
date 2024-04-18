@@ -1,0 +1,40 @@
+<h1 style="text-align: center;">{{title}}</h1>
+<table mat-table [dataSource]="sales" class="mat-elevation-z8 demo-table">
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Название выпечки </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="defaultPrice">
+    <th mat-header-cell *matHeaderCellDef> Начальная цена </th>
+    <td mat-cell *matCellDef="let element"> {{element.defaultPrice.toFixed(2)}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="currentPrice">
+    <th mat-header-cell *matHeaderCellDef> Текущая цена </th>
+    <td mat-cell *matCellDef="let element"> {{element.currentPrice.toFixed(2)}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="nextPrice">
+    <th mat-header-cell *matHeaderCellDef> Следующая цена </th>
+    <td mat-cell *matCellDef="let element"> {{element.nextPrice.toFixed(2)}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="timeToNext">
+    <th mat-header-cell *matHeaderCellDef> Срок до новой цены </th>
+    <td mat-cell *matCellDef="let element"> {{element.timeToNext}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
+
+<div class="outerDiv">
+  <div class="innerDiv">
+    <input [(ngModel)]="countBun" matInput type="number" min="1" max="1000"
+      placeholder="Введите количество продукции для выпечки" />
+    <button mat-flat-button color="warn" (click)="bakeSales()">Запечь</button>
+  </div>
+</div>
